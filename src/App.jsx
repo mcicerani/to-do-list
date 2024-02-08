@@ -22,37 +22,48 @@ function App() {
     newTodos.splice(index, 1)
     setTodos(newTodos)
   }
+  
+  const [completed, setCompleted] = useState(Array(todos.length).fill(false));
+
+
 
   return (
     <>
-      <div className='page-container'>
+      <div className='page__container'>
 
-        <header>
-          <h1>To Do List</h1>
-        </header>
+          <header>
+            <h1>To Do List</h1>
+          </header>
 
-        <div className='todos-container'>
+          <div className='todos-container'>
 
-          <form>
-            <input type='text' value={todo} onChange={todoChange} />
-            <button type='submit' onClick={addTodo}> Add </button>
-          </form>
+            <form>
+              <input type='text' value={todo} onChange={todoChange} />
+              <button type='submit' onClick={addTodo}> Add </button>
+            </form>
 
-          <ul className='todos'>
 
-          {
-            todos.map((todo, index) => (
-              <li className='todo' key={index}>
-                <input type='checkbox'/>
-                <span> {todo}</span>
-                <button onClick={() => todoDelete (index)}> Delete</button>
-              </li>
-            ))
-          }
+            <ul className='todos'>
 
-          </ul>
+              {
+                todos.map((todo, index) => (
+                  <li className='todo' key={index}>
+                    <input type='checkbox' checked={completed[index]} onChange={() => {
+                      const newCompleted = [...completed];
+                      newCompleted[index] = !newCompleted[index];
+                      setCompleted(newCompleted);
+                    }} />
+                    <span style={{ textDecoration: completed[index] ? 'line-through' : 'none', color: completed[index] ? 'gray' : 'inherit' }}>
+                      {todo}
+                    </span>
+                    <button onClick={() => todoDelete(index)}> Delete</button>
+                  </li>
+                ))
+              }
+              
+            </ul>
 
-        </div>
+          </div>
 
       </div>
     </>
