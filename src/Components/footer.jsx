@@ -3,7 +3,7 @@ import { FaGithub } from "react-icons/fa";
 import { FaEnvelope } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
 import PropTypes from 'prop-types';
-import logo from '../assets/Mc.png';
+import logo from '../assets/Mc.svg';
 
 
 const Footer = (props) => {
@@ -42,16 +42,16 @@ const Footer = (props) => {
 };
 
 
-Footer.propTypes = {
-  name: PropTypes.string,
-  email: PropTypes.string,
-  linkedin: PropTypes.string,
-  github: PropTypes.string,
+Footer.propTypes = { // PropTypes is a special property in React which helps in documenting the intended types of properties passed to a component.
+  name: PropTypes.string, // name is a string
+  email: PropTypes.string, // email is a string
+  linkedin: PropTypes.string, // linkedin is a string
+  github: PropTypes.string, // github is a string
 };
 
 
-Footer.defaultProps = {
-  name:""
+Footer.defaultProps = { // defaultProps is a special property in React which helps in providing default values for the properties passed to a component.
+  name:"", // name is a string
 }
 
 
