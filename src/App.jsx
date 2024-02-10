@@ -2,28 +2,28 @@ import { useState } from 'react'
 import './App.scss'
 
 function App() {
-  const [todos, setTodos] = useState([])
-  const [todo, setTodo] = useState('')
 
-  const todoChange = (e) => {
-    setTodo(e.target.value)
+  const [todos, setTodos] = useState([])  // todos = ['todo1', 'todo2', 'todo3']
+  const [todo, setTodo] = useState('')    // todo = 'todo'
+
+  const todoChange = (e) => {             // e = event
+    setTodo(e.target.value)               // e.target.value = input value
   }
 
-  const addTodo = (e) => {
-    e.preventDefault()
-    if (todo === '') return
-    setTodos([...todos, todo])
-    setTodo('')
-    console.log(todos)
+  const addTodo = (e) => {                // e = event
+    e.preventDefault()                    // prevent page refresh
+    if (todo === '') return               // if todo is empty, return
+    setTodos([...todos, todo])            // add todo to todos
+    setTodo('')                           // clear todo
   }
 
-  const todoDelete = (index) => {
-    const newTodos = [...todos]
-    newTodos.splice(index, 1)
-    setTodos(newTodos)
+  const todoDelete = (index) => {         // index = todo index  
+    const newTodos = [...todos]           // copy todos
+    newTodos.splice(index, 1)             // remove todo
+    setTodos(newTodos)                    // set new todos
   }
   
-  const [completed, setCompleted] = useState(Array(todos.length).fill(false));
+  const [completed, setCompleted] = useState(Array(todos.length).fill(false)); // completed = [false, false, false]
 
 
 
@@ -46,12 +46,12 @@ function App() {
             <ul className='todos'>
 
               {
-                todos.map((todo, index) => (
+                todos.map((todo, index) => (                                                  // map todos
                   <li className='todo' key={index}>
-                    <input type='checkbox' checked={completed[index]} onChange={() => {
-                      const newCompleted = [...completed];
-                      newCompleted[index] = !newCompleted[index];
-                      setCompleted(newCompleted);
+                    <input type='checkbox' checked={completed[index]} onChange={() => {       // checkbox
+                      const newCompleted = [...completed];                                    // copy completed
+                      newCompleted[index] = !newCompleted[index];                             // toggle completed
+                      setCompleted(newCompleted);                                             // set new completed
                     }} />
                     <span style={{ textDecoration: completed[index] ? 'line-through' : 'none', color: completed[index] ? 'gray' : 'inherit' }}>
                       {todo}
