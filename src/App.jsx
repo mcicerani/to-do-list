@@ -17,7 +17,6 @@ function App() {
 
   useEffect(() => {
     // Salva i dati nel localStorage ogni volta che i todos o i completati cambiano
-    console.log('Saving to localStorage:', todos, completed);
     localStorage.setItem('todos', JSON.stringify(todos));
     localStorage.setItem('completed', JSON.stringify(completed));
   }, [todos, completed]);
